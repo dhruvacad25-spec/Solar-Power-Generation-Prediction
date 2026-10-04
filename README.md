@@ -1,3 +1,4 @@
+<img width="1536" height="1024" alt="Solar Intelligence Prediction Dashboard" src="https://github.com/user-attachments/assets/c9249464-eb6c-4ca1-9215-2e390164aa27" />
 
 # ☀️ Solar Power Generation Prediction Using Machine Learning
 
