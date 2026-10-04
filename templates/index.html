@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solar Intelligence | Prediction</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Background decorative elements -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                <span></span>
+            </div>
+
+            <div class="brand-text">
+                <div class="brand-name">SOLAR<span>//</span>INTELLIGENCE</div>
+                <div class="brand-subtitle">POWER GENERATION FORECASTING</div>
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    MACHINE LEARNING / ENERGY ANALYTICS
+                </div>
+
+                <h1>
+                    Predict the
+                    <span>power of tomorrow.</span>
+                </h1>
+
+                <p>
+                    Estimate solar power generation using site,
+                    atmospheric and temporal conditions through
+                    a tuned Random Forest regression model.
+                </p>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="sun-orbit">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+
+                    <div class="sun">
+                        <div class="sun-core"></div>
+                    </div>
+
+                </div>
+
+                <div class="energy-label">
+                    <span class="energy-line"></span>
+                    ENERGY FORECAST
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form action="/predict" method="POST">
+
+
+            <!-- ================= SITE CONFIGURATION ================= -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div class="panel-number">01</div>
+
+                    <div>
+                        <h2>Site Configuration</h2>
+                        <p>Identify the solar generation location.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="input-grid two-columns">
+
+                    <div class="input-group">
+
+                        <label for="campus_key">
+                            CAMPUS KEY
+                        </label>
+
+                        <input
+                            type="number"
+                            id="campus_key"
+                            name="campus_key"
+                            placeholder="e.g. 2"
+                            required
+                        >
+
+                        <span class="input-hint">
+                            Campus identifier
+                        </span>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="site_key">
+                            SITE KEY
+                        </label>
+
+                        <input
+                            type="number"
+                            id="site_key"
+                            name="site_key"
+                            placeholder="e.g. 1"
+                            required
+                        >
+
+                        <span class="input-hint">
+                            Solar installation identifier
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= WEATHER CONDITIONS ================= -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div class="panel-number">02</div>
+
+                    <div>
+                        <h2>Atmospheric Conditions</h2>
+                        <p>Enter the environmental conditions at the site.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="input-grid four-columns">
+
+
+                    <div class="input-group">
+
+                        <label for="air_temperature">
+                            AIR TEMPERATURE
+                        </label>
+
+                        <div class="input-with-unit">
+
+                            <input
+                                type="number"
+                                step="any"
+                                id="air_temperature"
+                                name="air_temperature"
+                                placeholder="24.5"
+                                required
+                            >
+
+                            <span>°C</span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="apparent_temperature">
+                            APPARENT TEMPERATURE
+                        </label>
+
+                        <div class="input-with-unit">
+
+                            <input
+                                type="number"
+                                step="any"
+                                id="apparent_temperature"
+                                name="apparent_temperature"
+                                placeholder="25.1"
+                                required
+                            >
+
+                            <span>°C</span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="dew_point_temperature">
+                            DEW POINT
+                        </label>
+
+                        <div class="input-with-unit">
+
+                            <input
+                                type="number"
+                                step="any"
+                                id="dew_point_temperature"
+                                name="dew_point_temperature"
+                                placeholder="18.2"
+                                required
+                            >
+
+                            <span>°C</span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="relative_humidity">
+                            RELATIVE HUMIDITY
+                        </label>
+
+                        <div class="input-with-unit">
+
+                            <input
+                                type="number"
+                                step="any"
+                                id="relative_humidity"
+                                name="relative_humidity"
+                                placeholder="67"
+                                required
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= TIME PARAMETERS ================= -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div class="panel-number">03</div>
+
+                    <div>
+                        <h2>Temporal Parameters</h2>
+                        <p>Specify when the generation is being predicted.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="input-grid five-columns">
+
+
+                    <div class="input-group">
+
+                        <label for="year">
+                            YEAR
+                        </label>
+
+                        <input
+                            type="number"
+                            id="year"
+                            name="year"
+                            placeholder="2022"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="month">
+                            MONTH
+                        </label>
+
+                        <input
+                            type="number"
+                            min="1"
+                            max="12"
+                            id="month"
+                            name="month"
+                            placeholder="4"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="day">
+                            DAY
+                        </label>
+
+                        <input
+                            type="number"
+                            min="1"
+                            max="31"
+                            id="day"
+                            name="day"
+                            placeholder="23"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="hour">
+                            HOUR
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="23"
+                            id="hour"
+                            name="hour"
+                            placeholder="14"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <label for="day_of_week">
+                            DAY OF WEEK
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="6"
+                            id="day_of_week"
+                            name="day_of_week"
+                            placeholder="6"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="day-info">
+
+                    <span class="info-symbol">i</span>
+
+                    <span>
+                        Day of week follows the Python convention:
+                        0 = Monday &nbsp;·&nbsp; 6 = Sunday
+                    </span>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= PREDICT ================= -->
+
+            <section class="prediction-action">
+
+                <div class="action-copy">
+
+                    <div class="action-label">
+                        READY FOR ANALYSIS
+                    </div>
+
+                    <p>
+                        Submit the conditions to generate
+                        a solar power prediction.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="predict-button"
+                >
+
+                    <span class="button-icon">⚡</span>
+
+                    <span>
+                        GENERATE PREDICTION
+                    </span>
+
+                    <span class="button-arrow">→</span>
+
+                </button>
+
+            </section>
+
+        </form>
+
+
+
+        <!-- ================= MODEL INFORMATION ================= -->
+
+        <section class="model-strip">
+
+            <div class="model-item">
+
+                <span class="model-label">
+                    MODEL
+                </span>
+
+                <strong>
+                    TUNED RANDOM FOREST
+                </strong>
+
+            </div>
+
+
+            <div class="model-divider"></div>
+
+
+            <div class="model-item">
+
+                <span class="model-label">
+                    R² SCORE
+                </span>
+
+                <strong>
+                    0.8339
+                </strong>
+
+            </div>
+
+
+            <div class="model-divider"></div>
+
+
+            <div class="model-item">
+
+                <span class="model-label">
+                    RMSE
+                </span>
+
+                <strong>
+                    5.0995
+                </strong>
+
+            </div>
+
+
+            <div class="model-divider"></div>
+
+
+            <div class="model-item">
+
+                <span class="model-label">
+                    PREDICTION TYPE
+                </span>
+
+                <strong>
+                    REGRESSION
+                </strong>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <span>
+            SOLAR//INTELLIGENCE
+        </span>
+
+        <span>
+            MACHINE LEARNING POWER FORECASTING
+        </span>
+
+        <span>
+            MODEL STATUS: <b>ACTIVE</b>
+        </span>
+
+    </footer>
+
+
+</body>
+</html>

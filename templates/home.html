@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solar Intelligence | Solar Power Prediction</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body class="home-page">
+
+    <!-- ==========================
+         Header
+    =========================== -->
+
+    <header class="site-header">
+        <div class="header-inner">
+
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-mark">◒</span>
+                <span>SOLAR<span class="brand-slash">//</span>INTELLIGENCE</span>
+            </a>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ==========================
+         Hero
+    =========================== -->
+
+    <main>
+
+        <section class="home-hero">
+
+            <div class="hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        MACHINE LEARNING · RENEWABLE ENERGY
+                    </div>
+
+                    <h1>
+                        Predict the
+                        <span>power of tomorrow.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        A machine-learning-based system for predicting
+                        solar power generation using weather conditions,
+                        site information and temporal features.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="{{ url_for('predict') }}"
+                            class="primary-button"
+                        >
+                            GENERATE PREDICTION
+                            <span>→</span>
+                        </a>
+
+                        <a href="#about" class="secondary-button">
+                            EXPLORE SYSTEM
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Solar Visual -->
+
+                <div class="solar-visual">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="orbit orbit-three"></div>
+
+                    <div class="sun-core">
+                        <div class="sun-inner"></div>
+                    </div>
+
+                    <div class="solar-label label-top">
+                        SOLAR
+                    </div>
+
+                    <div class="solar-label label-bottom">
+                        ENERGY / ML
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             About Project
+        =========================== -->
+
+        <section class="home-section" id="about">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    01 / ABOUT THE PROJECT
+                </div>
+
+                <h2>
+                    Turning environmental
+                    data into useful predictions.
+                </h2>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="about-main">
+
+                    <p class="large-copy">
+                        Solar power generation is influenced by several
+                        factors, including weather conditions, location
+                        and time. Because these factors change throughout
+                        the day and across seasons, solar generation can
+                        vary significantly.
+                    </p>
+
+                    <p>
+                        This project develops a machine-learning system
+                        that learns patterns from historical solar
+                        generation and weather data. The processed data
+                        is used to train a regression model capable of
+                        estimating solar power generation for given
+                        environmental and temporal conditions.
+                    </p>
+
+                </div>
+
+
+                <div class="about-side">
+
+                    <div class="info-card">
+
+                        <span class="card-number">01</span>
+
+                        <h3>Weather</h3>
+
+                        <p>
+                            Temperature, dew point and relative humidity
+                            provide atmospheric information that can
+                            influence solar generation.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span class="card-number">02</span>
+
+                        <h3>Time</h3>
+
+                        <p>
+                            Hour, day, month and year help the model
+                            capture temporal patterns in generation.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span class="card-number">03</span>
+
+                        <h3>Site</h3>
+
+                        <p>
+                            Campus and site information allows the model
+                            to account for differences between generation
+                            locations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Why Prediction
+        =========================== -->
+
+        <section class="home-section dark-section">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    02 / WHY SOLAR PREDICTION?
+                </div>
+
+                <h2>
+                    Solar generation
+                    is never completely constant.
+                </h2>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    <span class="feature-index">01</span>
+
+                    <div class="feature-icon">◌</div>
+
+                    <h3>Variable Generation</h3>
+
+                    <p>
+                        Solar output changes with environmental
+                        conditions and the time of day.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <span class="feature-index">02</span>
+
+                    <div class="feature-icon">◈</div>
+
+                    <h3>Weather Influence</h3>
+
+                    <p>
+                        Atmospheric conditions provide important
+                        information for understanding generation patterns.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <span class="feature-index">03</span>
+
+                    <div class="feature-icon">⌁</div>
+
+                    <h3>Pattern Recognition</h3>
+
+                    <p>
+                        Machine learning can identify relationships
+                        across large historical datasets.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             How It Works
+        =========================== -->
+
+        <section class="home-section">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    03 / SYSTEM WORKFLOW
+                </div>
+
+                <h2>
+                    From raw data
+                    to prediction.
+                </h2>
+
+            </div>
+
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">01</span>
+
+                    <h3>DATA</h3>
+
+                    <p>
+                        Solar generation and weather data
+                        are collected from the dataset.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">02</span>
+
+                    <h3>PREPROCESS</h3>
+
+                    <p>
+                        Missing values are handled, datasets
+                        are cleaned and relevant records are merged.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">03</span>
+
+                    <h3>FEATURES</h3>
+
+                    <p>
+                        Weather, site and temporal information
+                        are prepared as model features.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">04</span>
+
+                    <h3>MODEL</h3>
+
+                    <p>
+                        A tuned Random Forest regression model
+                        learns patterns from the training data.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <span class="workflow-number">05</span>
+
+                    <h3>PREDICT</h3>
+
+                    <p>
+                        The trained model estimates solar
+                        generation for new input conditions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Model Section
+        =========================== -->
+
+        <section class="home-section model-section">
+
+            <div class="model-intro">
+
+                <div>
+
+                    <div class="eyebrow">
+                        04 / MACHINE LEARNING MODEL
+                    </div>
+
+                    <h2>
+                        Built around
+                        Random Forest regression.
+                    </h2>
+
+                    <p>
+                        Multiple regression algorithms were evaluated
+                        during model development. The tuned Random Forest
+                        model currently provides the strongest performance
+                        in our evaluation.
+                    </p>
+
+                </div>
+
+
+                <div class="model-badge-large">
+                    <span class="status-dot"></span>
+                    CURRENT MODEL
+                </div>
+
+            </div>
+
+
+            <div class="metrics-grid">
+
+                <div class="metric-card">
+
+                    <span class="metric-label">
+                        MODEL
+                    </span>
+
+                    <strong class="metric-model">
+                        TUNED<br>
+                        RANDOM FOREST
+                    </strong>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <span class="metric-label">
+                        R² SCORE
+                    </span>
+
+                    <strong>
+                        0.8339
+                    </strong>
+
+                    <small>
+                        Evaluation result
+                    </small>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <span class="metric-label">
+                        RMSE
+                    </span>
+
+                    <strong>
+                        5.0995
+                    </strong>
+
+                    <small>
+                        Evaluation result
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Features
+        =========================== -->
+
+        <section class="home-section">
+
+            <div class="section-heading">
+
+                <div class="eyebrow">
+                    05 / MODEL INPUTS
+                </div>
+
+                <h2>
+                    What does the model look at?
+                </h2>
+
+            </div>
+
+
+            <div class="input-list">
+
+                <div class="input-item">
+                    <span>01</span>
+                    <strong>CampusKey</strong>
+                    <small>Campus identifier</small>
+                </div>
+
+                <div class="input-item">
+                    <span>02</span>
+                    <strong>SiteKey</strong>
+                    <small>Solar site identifier</small>
+                </div>
+
+                <div class="input-item">
+                    <span>03</span>
+                    <strong>Temperature</strong>
+                    <small>Air & apparent temperature</small>
+                </div>
+
+                <div class="input-item">
+                    <span>04</span>
+                    <strong>Atmosphere</strong>
+                    <small>Dew point & relative humidity</small>
+                </div>
+
+                <div class="input-item">
+                    <span>05</span>
+                    <strong>Calendar</strong>
+                    <small>Year, month & day</small>
+                </div>
+
+                <div class="input-item">
+                    <span>06</span>
+                    <strong>Time</strong>
+                    <small>Hour & day of week</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             CTA
+        =========================== -->
+
+        <section class="home-cta">
+
+            <div class="cta-glow"></div>
+
+            <div class="eyebrow">
+                READY TO EXPLORE?
+            </div>
+
+            <h2>
+                Generate a solar
+                power prediction.
+            </h2>
+
+            <p>
+                Enter the site, weather and temporal conditions
+                and let the trained model estimate solar generation.
+            </p>
+
+            <a
+                href="{{ url_for('predict') }}"
+                class="primary-button"
+            >
+                START PREDICTION
+                <span>→</span>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================
+         Footer
+    =========================== -->
+
+    <footer class="site-footer">
+
+        <div>
+            SOLAR//INTELLIGENCE
+        </div>
+
+        <div>
+            SOLAR POWER GENERATION · MACHINE LEARNING
+        </div>
+
+        <div>
+            B.TECH AI & DATA SCIENCE
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

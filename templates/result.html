@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result | Solar Intelligence</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- ================= BACKGROUND ================= -->
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                <span></span>
+            </div>
+
+            <div class="brand-text">
+
+                <div class="brand-name">
+                    SOLAR<span>//</span>INTELLIGENCE
+                </div>
+
+                <div class="brand-subtitle">
+                    POWER GENERATION FORECASTING
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            PREDICTION COMPLETE
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="result-container">
+
+
+        <!-- ================= RESULT HERO ================= -->
+
+        <section class="result-hero">
+
+
+            <div class="result-heading">
+
+                <div class="eyebrow">
+                    MACHINE LEARNING / FORECAST RESULT
+                </div>
+
+                <h1>
+                    Solar generation
+                    <span>forecast.</span>
+                </h1>
+
+                <p>
+                    The trained model has processed the supplied
+                    site, atmospheric and temporal conditions.
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= RESULT CARD ================= -->
+
+            <div class="result-card">
+
+
+                <div class="result-card-top">
+
+                    <div class="result-label">
+                        PREDICTED SOLAR GENERATION
+                    </div>
+
+                    <div class="result-status">
+                        <span></span>
+                        OUTPUT READY
+                    </div>
+
+                </div>
+
+
+
+                <div class="prediction-display">
+
+                    <div class="prediction-value">
+                        {{ prediction }}
+                    </div>
+
+                    <div class="prediction-unit">
+                        GENERATION UNITS
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-meter">
+
+                    <div class="meter-track">
+                        <div class="meter-fill"></div>
+                    </div>
+
+                    <div class="meter-labels">
+
+                        <span>
+                            MODEL OUTPUT
+                        </span>
+
+                        <span>
+                            REGRESSION
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-card-bottom">
+
+                    <div>
+
+                        <span class="small-label">
+                            MODEL
+                        </span>
+
+                        <strong>
+                            TUNED RANDOM FOREST
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="small-label">
+                            R²
+                        </span>
+
+                        <strong>
+                            0.8339
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="small-label">
+                            RMSE
+                        </span>
+
+                        <strong>
+                            5.0995
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= INTERPRETATION ================= -->
+
+        <section class="result-information">
+
+
+            <div class="information-header">
+
+                <div class="panel-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        Prediction Summary
+                    </h2>
+
+                    <p>
+                        Information about the generated model output.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="information-grid">
+
+
+                <div class="information-item">
+
+                    <div class="information-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <span>
+                            OUTPUT
+                        </span>
+
+                        <strong>
+                            {{ prediction }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="information-item">
+
+                    <div class="information-icon">
+                        ML
+                    </div>
+
+                    <div>
+
+                        <span>
+                            ALGORITHM
+                        </span>
+
+                        <strong>
+                            Random Forest
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="information-item">
+
+                    <div class="information-icon">
+                        R²
+                    </div>
+
+                    <div>
+
+                        <span>
+                            MODEL SCORE
+                        </span>
+
+                        <strong>
+                            0.8339
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="information-item">
+
+                    <div class="information-icon">
+                        RM
+                    </div>
+
+                    <div>
+
+                        <span>
+                            ERROR METRIC
+                        </span>
+
+                        <strong>
+                            5.0995 RMSE
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ACTION ================= -->
+
+        <section class="result-action">
+
+
+            <div>
+
+                <div class="action-label">
+                    WANT ANOTHER FORECAST?
+                </div>
+
+                <p>
+                    Enter a different set of conditions
+                    and generate a new prediction.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/"
+                class="new-prediction-button"
+            >
+
+                <span>
+                    ←
+                </span>
+
+                GENERATE NEW PREDICTION
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <span>
+            SOLAR//INTELLIGENCE
+        </span>
+
+        <span>
+            MACHINE LEARNING POWER FORECASTING
+        </span>
+
+        <span>
+            MODEL STATUS:
+            <b>ACTIVE</b>
+        </span>
+
+    </footer>
+
+
+</body>
+</html>
