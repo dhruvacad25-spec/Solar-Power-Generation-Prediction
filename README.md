@@ -2,248 +2,164 @@
 
 # ☀️ Solar Power Generation Prediction Using Machine Learning
 
+A machine learning-based web application that predicts solar power generation using solar-site information, weather conditions, and temporal features. The project combines data preprocessing, exploratory data analysis, regression models, and a Flask web application to provide solar generation predictions through a user-friendly interface.
+
+## 🌐 Live Website
+
+**Try the application here:**
+https://solar-power-generation-prediction-vt3h.onrender.com
+
+Users can enter site, atmospheric, and time-related parameters to obtain a predicted solar generation value.
+
 ## 📌 Project Overview
 
-Solar power generation varies with factors such as weather conditions, location, and time. Predicting solar generation can help in understanding expected energy production and support better planning of renewable energy resources.
+Solar power generation depends on multiple factors, including weather conditions, location, and time. Understanding these factors can help improve the planning and utilization of solar energy systems.
 
-This project develops a **machine learning-based solar power generation prediction system** using historical solar generation data, weather conditions, site information, and temporal features.
-
-The project includes data preprocessing, exploratory data analysis, machine learning model comparison, model tuning, and a Flask-based web application for prediction.
-
----
+This project explores historical solar generation and weather data to develop machine learning models that estimate solar power generation. The selected model is integrated into a Flask web application and deployed online using Render.
 
 ## 🎯 Objectives
 
-- Analyze historical solar power generation data.
-- Preprocess and clean solar and weather datasets.
-- Identify important factors affecting solar power generation.
-- Perform exploratory data analysis.
-- Build and compare different machine learning regression models.
-- Tune the selected machine learning model.
-- Evaluate model performance using suitable regression metrics.
-- Develop a web-based interface for solar power generation prediction.
-
----
+* Analyze historical solar power generation and weather data.
+* Perform data cleaning, preprocessing, and exploratory data analysis.
+* Identify patterns and relationships between solar generation and relevant features.
+* Train and compare multiple machine learning regression models.
+* Optimize the selected model for practical deployment.
+* Develop a Flask-based web application for generating predictions.
+* Deploy the application online for public access.
 
 ## 📊 Dataset
 
-The project uses the **UNISOLAR: An Open Dataset of Photovoltaic Solar Energy Generation in a Large Multi-Campus University Setting** dataset.
+The project uses the **UNISOLAR solar power generation dataset**, which contains photovoltaic generation measurements and associated weather and solar-site information.
 
-The dataset contains solar generation records along with weather conditions and solar site information.
+**Dataset source:** [UNISOLAR — Solar Power Generation Dataset on Kaggle](https://www.kaggle.com/datasets/cdaclab/unisolar)
 
-### Main Data Components
+The dataset includes information such as:
 
-- Solar power generation data
-- Weather conditions
-- Solar site information
-- Monthly solar generation summaries
+* Solar generation measurements
+* Campus and site identifiers
+* Timestamps
+* Apparent temperature
+* Air temperature
+* Dew point temperature
+* Relative humidity
+* Solar-site and panel information in the original source data
 
----
+## 🧹 Data Preprocessing
 
-## ⚙️ Data Preprocessing
+The raw solar and weather datasets were cleaned and prepared before model development.
 
-The preprocessing workflow includes:
+Key preprocessing steps included:
 
-1. Loading the raw solar generation and weather datasets.
-2. Inspecting missing values and duplicate records.
-3. Removing solar generation records with missing target values.
-4. Identifying weather data with extensive missing blocks.
-5. Removing unsuitable weather campuses.
-6. Handling remaining missing weather values.
-7. Merging solar generation data with weather data.
-8. Converting timestamps into datetime format.
-9. Extracting temporal features.
-10. Preparing the final dataset for machine learning.
+* Removing records with missing solar generation values.
+* Examining missing values and duplicate records.
+* Excluding weather campuses with extensive missing-data blocks.
+* Handling remaining missing weather values.
+* Merging solar generation and weather data.
+* Converting timestamps to datetime format.
+* Extracting temporal features such as year, month, day, hour, and day of the week.
+* Sorting records chronologically.
+* Preparing training and testing datasets.
 
-### Final Dataset
-
-| Property | Value |
-|---|---:|
-| Rows | 1,123,099 |
-| Columns | 13 |
-| Missing Values | 0 |
-
----
+The final processed dataset contained **1,123,099 rows and 13 columns**, with no missing values.
 
 ## 🔍 Exploratory Data Analysis
 
-Exploratory analysis was performed to understand the characteristics of solar generation and its relationship with different features.
+Exploratory data analysis was performed to understand the dataset and identify useful patterns.
 
-The analysis included:
+Key observations included:
 
-- Target variable distribution
-- Boxplot analysis
-- Correlation analysis
-- Weather feature relationships
-- Solar generation against temperature
-- Solar generation against relative humidity
-- Hourly solar generation patterns
-- Temporal analysis
-- Feature importance analysis
+* Solar generation generally rises during the morning, reaches higher levels around midday, and decreases during the afternoon.
+* Air temperature showed a positive relationship with solar generation in the analyzed data.
+* Relative humidity showed a negative relationship with solar generation.
+* Site-related and temporal features provided useful information for predicting generation.
 
-### Key Observations
-
-- Solar generation generally increases during the morning and reaches higher levels around midday.
-- Solar generation decreases during the afternoon and remains relatively low during nighttime.
-- Weather variables show varying degrees of relationship with solar generation.
-- `SiteKey` was the most influential feature in the Random Forest model.
-- `Hour` and `RelativeHumidity` were also important predictive features.
-
----
-
-## 🧠 Machine Learning Problem
-
-This project is formulated as a **regression problem**.
-
-### Features Used
-
-The model uses the following features:
-
-- `CampusKey`
-- `SiteKey`
-- `ApparentTemperature`
-- `AirTemperature`
-- `DewPointTemperature`
-- `RelativeHumidity`
-- `Year`
-- `Month`
-- `Day`
-- `Hour`
-- `DayOfWeek`
-
-### Target Variable
-
-```text
-SolarGeneration
-````
-
-The objective is to predict the amount of solar power generated based on site, weather, and temporal information.
-
----
+These observations helped guide feature selection and model development.
 
 ## 🤖 Machine Learning Models
 
-The following regression models were evaluated:
+The following regression algorithms were evaluated:
 
-| Model                   |      MAE ↓ |       MSE ↓ |     RMSE ↓ |       R² ↑ |
-| ----------------------- | ---------: | ----------: | ---------: | ---------: |
-| Linear Regression       |     6.9274 |    143.2813 |    11.9700 |     0.0846 |
-| KNN Regressor           |     6.2624 |    124.7669 |    11.1699 |     0.2029 |
-| Decision Tree           |     3.2457 |     48.3502 |     6.9534 |     0.6911 |
-| Random Forest           |     2.4983 |     26.4524 |     5.1432 |     0.8310 |
-| Gradient Boosting       |     4.0151 |     50.3227 |     7.0938 |     0.6785 |
-| **Tuned Random Forest** | **2.4706** | **26.0050** | **5.0995** | **0.8339** |
+1. Linear Regression
+2. K-Nearest Neighbors (KNN) Regression
+3. Decision Tree Regression
+4. Random Forest Regression
+5. Gradient Boosting Regression
 
-### 🏆 Selected Model
+The models were compared using Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and the coefficient of determination (R²).
 
-The **Tuned Random Forest Regressor** achieved the best performance among the models evaluated in the current experiments.
+### Final Deployment Model
 
-| Metric   |   Value |
-| -------- | ------: |
-| MAE      |  2.4706 |
-| MSE      | 26.0050 |
-| RMSE     |  5.0995 |
-| R² Score |  0.8339 |
+A smaller **Random Forest Regressor** was trained specifically for deployment. The model uses fewer trees and a restricted maximum tree depth to reduce storage requirements while retaining comparable predictive performance.
 
-### Tuned Parameters
+| Parameter                | Value                   |
+| ------------------------ | ----------------------- |
+| Algorithm                | Random Forest Regressor |
+| Number of trees          | 20                      |
+| Maximum tree depth       | 12                      |
+| Minimum samples to split | 2                       |
+| Minimum samples per leaf | 1                       |
+| Random state             | 42                      |
+| Saved model              | `deployment_model.pkl`  |
+| Compressed file size     | Approximately 3.44 MB   |
 
-```text
-n_estimators = 50
-max_depth = 20
-min_samples_split = 2
-min_samples_leaf = 1
-random_state = 42
-```
+### Model Evaluation Results
 
----
+The deployment model was evaluated on the test dataset.
 
-## 📈 Model Evaluation
+| Evaluation Metric              | Result |
+| ------------------------------ | -----: |
+| Mean Absolute Error (MAE)      | 2.7039 |
+| Root Mean Squared Error (RMSE) | 5.1504 |
+| R² Score                       | 0.8305 |
 
-The models were evaluated using the following regression metrics:
+An R² score of 0.8305 indicates that the model explains approximately 83.05% of the variance in the target values on the evaluated test set.
 
-### Mean Absolute Error (MAE)
+### Model Size Optimization
 
-Measures the average absolute difference between the actual and predicted values.
+The original tuned Random Forest model occupied approximately 997 MB. A smaller deployment-specific model was created and saved using compression.
 
-### Mean Squared Error (MSE)
+* Original model size: approximately 997 MB
+* Deployment model size: approximately 3.44 MB
+* Approximate size reduction: 99.65%
 
-Measures the average squared difference between actual and predicted values and gives greater weight to larger errors.
+The smaller model provides a practical alternative for hosting the web application, with a modest change in the reported evaluation metrics.
 
-### Root Mean Squared Error (RMSE)
+## 🖥️ Web Application
 
-The square root of MSE, representing prediction error in the same scale as the target variable.
+The project includes a Flask web application with a dark, technology-inspired interface focused on solar intelligence.
 
-### R² Score
+### Features
 
-Measures how well the model explains the variation in the target variable.
+* Project landing page and overview
+* Interactive solar generation prediction form
+* Solar-site configuration inputs
+* Weather and atmospheric inputs
+* Temporal parameter inputs
+* Prediction results page
+* Responsive interface
+* Integration with the trained Random Forest model
 
-A higher R² score and lower MAE, MSE, and RMSE indicate better model performance.
+### Application Workflow
 
----
+**User Input → Flask Application → Feature Preparation → Random Forest Model → Solar Generation Prediction → Results Page**
 
-## 🌐 Web Application
-
-A Flask-based web application was developed to provide an interface for solar power generation prediction.
-
-The application allows users to enter:
-
-* Campus information
-* Site information
-* Temperature values
-* Relative humidity
-* Date information
-* Time information
-
-The trained machine learning model then generates a predicted solar generation value.
-
-### Application Flow
-
-```text
-User Input
-     ↓
-Site + Weather + Temporal Features
-     ↓
-Flask Application
-     ↓
-Tuned Random Forest Model
-     ↓
-Solar Generation Prediction
-     ↓
-Result Display
-```
-
----
-
-## 🖥️ Web Application Pages
-
-### 🏠 Home Page
-
-Introduces the project, explains the prediction system, and presents the overall workflow.
-
-### 🔢 Prediction Page
-
-Allows users to enter site, weather, and temporal parameters.
-
-### 📊 Result Page
-
-Displays the predicted solar generation value along with model information.
-
----
+1. The user opens the prediction form.
+2. The user enters site, weather, and temporal parameters.
+3. Flask arranges the input values in the feature order expected by the model.
+4. The deployment model generates a prediction.
+5. The application displays the predicted solar generation value.
 
 ## 🛠️ Technologies Used
 
-* **Python**
-* **Pandas**
-* **NumPy**
-* **Scikit-learn**
-* **Matplotlib**
-* **Jupyter Notebook**
-* **Flask**
-* **Joblib**
-* **HTML**
-* **CSS**
-
----
+* **Programming language:** Python
+* **Data processing:** Pandas, NumPy
+* **Machine learning:** Scikit-learn
+* **Model serialization:** Joblib
+* **Web framework:** Flask
+* **Web server:** Gunicorn
+* **Frontend:** HTML, CSS
+* **Version control:** Git and GitHub
+* **Deployment platform:** Render
 
 ## 📁 Project Structure
 
@@ -251,8 +167,9 @@ Displays the predicted solar generation value along with model information.
 Solar-Power-Generation-Prediction/
 │
 ├── app.py
+├── deployment_model.pkl
 ├── requirements.txt
-├── tuned_random_forest_model.pkl
+├── README.md
 │
 ├── templates/
 │   ├── home.html
@@ -263,159 +180,89 @@ Solar-Power-Generation-Prediction/
 │   └── css/
 │       └── style.css
 │
-├── data/
-│   ├── raw_data/
-│   └── processed_data/
-│
-└── notebooks/
-    ├── data_preprocessing_and_analysis.ipynb
-    └── model_training_and_evaluation.ipynb
+└── data/
+    ├── raw_data/
+    └── processed_data/
+        └── solar_power_generation_preprocessed.csv
 ```
 
----
+*Note: The data directories and notebook files may be maintained locally rather than included in the deployment repository.*
 
-## 🔑 Important Features
+## 🚀 Running the Project Locally
 
-### Site Features
+### 1. Clone the repository
 
-* Campus
-* Site
+```bash
+git clone https://github.com/dhruvacad25-spec/Solar-Power-Generation-Prediction.git
+```
 
-### Weather Features
+### 2. Open the project directory
 
-* Air Temperature
-* Apparent Temperature
-* Dew Point Temperature
-* Relative Humidity
+```bash
+cd Solar-Power-Generation-Prediction
+```
 
-### Temporal Features
+### 3. Install dependencies
 
-* Year
-* Month
-* Day
-* Hour
-* Day of Week
+```bash
+pip install -r requirements.txt
+```
 
-Combining these features allows the model to capture relationships between solar generation, weather conditions, location, and time.
+### 4. Start the Flask application
 
----
+```bash
+python app.py
+```
 
-## 📌 Key Findings
+### 5. Open the website
 
-* Solar generation exhibits a noticeable time-of-day pattern.
-* Generation generally increases during the morning and reaches higher levels around midday.
-* `SiteKey` was the most important feature in the Random Forest model.
-* `Hour` was another important predictive feature.
-* `RelativeHumidity` also contributed significantly to the model.
-* Random Forest performed substantially better than Linear Regression, KNN, Decision Tree, and Gradient Boosting in the current experiments.
-* Hyperparameter tuning provided a small improvement over the baseline Random Forest model.
-* The final tuned model achieved an **R² score of 0.8339**.
+Visit:
 
----
+http://127.0.0.1:5000
 
-## 🚀 Future Scope
+Ensure that `deployment_model.pkl` is present in the project directory alongside `app.py`.
 
-* Improve temporal validation using stricter time-based splitting.
-* Perform additional feature engineering.
-* Explore further hyperparameter tuning.
-* Incorporate additional weather and solar-related features.
-* Investigate more advanced machine learning models.
-* Explore deep learning approaches for solar forecasting.
-* Deploy the prediction application as an online service if required.
-* Integrate real-time weather data for dynamic prediction.
+## 📈 Key Outcomes
 
----
+* Processed more than 1.1 million solar generation records.
+* Conducted exploratory analysis of solar generation and weather patterns.
+* Compared multiple regression algorithms.
+* Developed a compact Random Forest deployment model.
+* Reduced the saved model size by approximately 99.65%.
+* Integrated the model into a Flask web application.
+* Deployed the application on Render with a publicly accessible URL.
 
-## 👥 Team Members
+## 🔮 Future Enhancements
 
-* **Adheena Sunil**
-* **Bilsa Binu**
-* **Dhruva C**
-* **Ashhad M**
+* Incorporate additional weather forecasts for future generation estimates.
+* Explore time-series forecasting techniques.
+* Improve model evaluation across different sites and seasonal conditions.
+* Add interactive visualizations of historical and predicted generation.
+* Develop monitoring and model-retraining workflows.
 
----
+## 👥 Project Team
+
+* Adheena Sunil
+* Bilsa Binu
+* Dhruva C
+* Ashhad M
 
 ## 📚 References
 
-1. S. Wimalaratne, D. Haputhanthri, S. Kahawala, G. Gamage, D. Alahakoon and A. Jennings, "UNISOLAR: An Open Dataset of Photovoltaic Solar Energy Generation in a Large Multi-Campus University Setting," *2022 15th International Conference on Human System Interaction (HSI)*, 2022, pp. 1–5.
+1. S. Wimalaratne, D. Haputhanthri, S. Kahawala, G. Gamage, D. Alahakoon, and A. Jennings, “UNISOLAR: An Open Dataset of Photovoltaic Solar Energy Generation in a Large Multi-Campus University Setting,” *2022 15th International Conference on Human System Interaction (HSI)*, 2022. [DOI: 10.1109/HSI55341.2022.9869474](https://doi.org/10.1109/HSI55341.2022.9869474)
 
-2. J. Antonanzas et al., "Review of photovoltaic power forecasting," *Solar Energy*, vol. 136, pp. 78–111, 2016.
+2. J. Antonanzas et al., “Review of photovoltaic power forecasting,” *Solar Energy*, vol. 136, pp. 78–111, 2016. [DOI: 10.1016/j.solener.2016.06.069](https://doi.org/10.1016/j.solener.2016.06.069)
 
-3. "Solar Photovoltaic Energy Forecasting Using Machine Learning and Deep Learning Technique," *2022 IEEE 9th Uttar Pradesh Section International Conference on Electrical, Electronics and Computer Engineering (UPCON)*, 2022.
+3. “Solar Photovoltaic Energy Forecasting Using Machine Learning and Deep Learning Technique,” *2022 IEEE 9th Uttar Pradesh Section International Conference on Electrical, Electronics and Computer Engineering (UPCON)*, 2022. [DOI: 10.1109/UPCON56432.2022.9986446](https://doi.org/10.1109/UPCON56432.2022.9986446)
 
 4. [Python Documentation](https://docs.python.org/3/)
 
 5. [Pandas Documentation](https://pandas.pydata.org/docs/)
 
-6. [Scikit-learn Documentation](https://scikit-learn.org/stable/user_guide.html)
+6. [Scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
 
 ---
 
-## Machine Learning Model
+**Project Status:** Developed and deployed. The Flask web application is available online through Render.
 
-The project uses a **Random Forest Regressor** to predict solar power generation based on solar-site information, weather conditions, and temporal features.
-
-A smaller Random Forest model was created specifically for deployment to reduce storage requirements while retaining comparable predictive performance.
-
-### Model Evaluation
-
-The deployment model was evaluated using the test dataset.
-
-| Metric                         | Deployment Model |
-| ------------------------------ | ---------------: |
-| Mean Absolute Error (MAE)      |           2.7039 |
-| Root Mean Squared Error (RMSE) |           5.1504 |
-| R² Score                       |           0.8305 |
-
-The model achieved an R² score of approximately **0.83**, indicating that it explains around 83% of the variance in the test-set target values.
-
-### Deployment Model Optimization
-
-The original tuned Random Forest model was approximately 997 MB. To make deployment more practical, a smaller model was trained with fewer trees and a limited maximum tree depth.
-
-| Property              | Value                   |
-| --------------------- | ----------------------- |
-| Model type            | Random Forest Regressor |
-| Number of trees       | 20                      |
-| Maximum tree depth    | 12                      |
-| Model filename        | `deployment_model.pkl`  |
-| Compressed model size | 3.44 MB                 |
-
-This reduced the saved model size by approximately **99.65%** compared with the original model.
-
-The deployment model's performance remains close to the original model's evaluation results, making it a practical candidate for hosting the Flask application.
-
-## Web Application
-
-The project includes a Flask-based web application that allows users to enter site, weather, and time-related information and obtain a solar power generation prediction.
-
-### Application Features
-
-* User-friendly prediction form
-* Solar-site and weather input fields
-* Time-based input parameters
-* Random Forest-based prediction
-* Dedicated prediction results page
-* Responsive dark-themed interface
-
-### Application Workflow
-
-1. The user enters the required input values.
-2. The Flask application collects and arranges the inputs in the expected feature order.
-3. The deployment model generates a prediction.
-4. The predicted solar generation value is displayed on the results page.
-
-## Project Status
-
-* [x] Dataset collection
-* [x] Data preprocessing and exploratory data analysis
-* [x] Machine learning model training and evaluation
-* [x] Random Forest model optimization for deployment
-* [x] Flask web application development
-* [x] Local application testing
-* [x] Upload of the deployment model to GitHub
-* [ ] Cloud deployment and live website testing
-
-**Current status:** The application works locally with the smaller deployment model. Cloud deployment and live testing are pending.
-
-
+**Live Application:** https://solar-power-generation-prediction-vt3h.onrender.com
