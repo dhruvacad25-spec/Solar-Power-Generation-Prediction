@@ -351,21 +351,71 @@ Combining these features allows the model to capture relationships between solar
 
 ---
 
-## 📌 Project Status
+## Machine Learning Model
 
-**Development Completed**
+The project uses a **Random Forest Regressor** to predict solar power generation based on solar-site information, weather conditions, and temporal features.
 
-The project currently includes:
+A smaller Random Forest model was created specifically for deployment to reduce storage requirements while retaining comparable predictive performance.
 
-* Data preprocessing
-* Exploratory data analysis
-* Machine learning model comparison
-* Random Forest model tuning
-* Model evaluation
-* Flask web application
-* Prediction interface
-* Result visualization
+### Model Evaluation
 
-Online deployment is **subject to project requirements**.
+The deployment model was evaluated using the test dataset.
+
+| Metric                         | Deployment Model |
+| ------------------------------ | ---------------: |
+| Mean Absolute Error (MAE)      |           2.7039 |
+| Root Mean Squared Error (RMSE) |           5.1504 |
+| R² Score                       |           0.8305 |
+
+The model achieved an R² score of approximately **0.83**, indicating that it explains around 83% of the variance in the test-set target values.
+
+### Deployment Model Optimization
+
+The original tuned Random Forest model was approximately 997 MB. To make deployment more practical, a smaller model was trained with fewer trees and a limited maximum tree depth.
+
+| Property              | Value                   |
+| --------------------- | ----------------------- |
+| Model type            | Random Forest Regressor |
+| Number of trees       | 20                      |
+| Maximum tree depth    | 12                      |
+| Model filename        | `deployment_model.pkl`  |
+| Compressed model size | 3.44 MB                 |
+
+This reduced the saved model size by approximately **99.65%** compared with the original model.
+
+The deployment model's performance remains close to the original model's evaluation results, making it a practical candidate for hosting the Flask application.
+
+## Web Application
+
+The project includes a Flask-based web application that allows users to enter site, weather, and time-related information and obtain a solar power generation prediction.
+
+### Application Features
+
+* User-friendly prediction form
+* Solar-site and weather input fields
+* Time-based input parameters
+* Random Forest-based prediction
+* Dedicated prediction results page
+* Responsive dark-themed interface
+
+### Application Workflow
+
+1. The user enters the required input values.
+2. The Flask application collects and arranges the inputs in the expected feature order.
+3. The deployment model generates a prediction.
+4. The predicted solar generation value is displayed on the results page.
+
+## Project Status
+
+* [x] Dataset collection
+* [x] Data preprocessing and exploratory data analysis
+* [x] Machine learning model training and evaluation
+* [x] Random Forest model optimization for deployment
+* [x] Flask web application development
+* [x] Local application testing
+* [x] Upload of the deployment model to GitHub
+* [ ] Cloud deployment and live website testing
+
+**Current status:** The application works locally with the smaller deployment model. Cloud deployment and live testing are pending.
 
 
