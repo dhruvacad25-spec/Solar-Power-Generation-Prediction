@@ -4,7 +4,7 @@ import joblib
 app = Flask(__name__)
 
 # Load trained model
-model = joblib.load("tuned_random_forest_model.pkl")
+model = joblib.load("deployment_model.pkl")
 
 
 # ==========================
